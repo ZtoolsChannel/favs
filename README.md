@@ -6,14 +6,14 @@ given by me at SHARE and GSE-UK conferences.
 Please provide me with any suggestions and/or corrections.
 
 Dan Dirkse
-ztools.channel@gmail.com                                                      */
+ztools.channel@gmail.com
 
 
 The following files make up the package and should be maintained with
 the GNU GENERAL PUBLIC LICENSE contained in the @LICENSE.TXT file.
 
-@LICENSE.TXT - GNU GENERAL PUBLIC LICENSE
-@README.TXT  - This file
+@LICENSE.TXT - GNU GENERAL PUBLIC LICENSE<br />
+@README.TXT  - This file<br />
 BATEDIT.REX  - Exec to call the editor in batch
 BATJCL.JCL   - JCL to call BATEDIT
 CHANGEIT.REX - Example initial edit macro used by BATEDIT
