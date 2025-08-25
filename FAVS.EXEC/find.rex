@@ -1,0 +1,47 @@
+/**************************** Rexx ***********************************/
+/* Run the FINDMAC macro against sequential data set in option 3.4.  */
+/* Sets ZDLMSG as the message for 3.4 to display.                    */
+/*********************************************************************/
+Arg data
+
+dsnstart = Lastpos("'",Left(data,length(data)-1))
+Parse Var data findstr =(dsnstart) dsn
+
+Address ISPEXEC "VIEW DATASET("dsn") MACRO(FINDMAC) PARM(FINDSTR)"
+Address ISPEXEC "VGET (FINDRC,FINDCNT) SHARED"
+Select
+  When findrc = 0 Then
+    If findcnt > 1 Then
+      zdlmsg = findcnt "found"
+    Else
+      zdlmsg = "String found"
+  When findrc = 4 Then
+    zdlmsg = "String not found"
+  Otherwise
+    zdlmsg = "Error occurred"
+End
+
+Address ISPEXEC "VPUT (ZDLMSG) SHARED"
+Exit findrc
+/**********************************************************************/
+/* Send questions, suggestions and/or bug reports to:                 */
+/*                         Dan Dirkse                                 */
+/*                   ztools.channel@gmail.com                         */
+/**********************************************************************/
+/*                                                                    */
+/*             (C) Copyright The Z Tools Company, 2025                */
+/*                                                                    */
+/**********************************************************************/
+/* This program is free software: you can redistribute it and/or      */
+/* modify it under the terms of the GNU General Public License as     */
+/* published by the Free Software Foundation, either version 3 of     */
+/* the License, or (at your option) any later version.                */
+/*                                                                    */
+/* This program is distributed in the hope that it will be useful,    */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty of     */
+/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the       */
+/* GNU General Public License for more details.                       */
+/*                                                                    */
+/* You should have received a copy of the GNU General Public License  */
+/* along with this program. If not, see https://www.gnu.org/licenses/ */
+/**********************************************************************/
